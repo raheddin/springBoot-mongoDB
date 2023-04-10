@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Service
-public class CommonService<T> {
+public class CommonService {
 
     @Autowired
-    private CommonModelRepository<T> repository;
+    private CommonModelRepository repository;
 
 
     @PostMapping("/MB")
-    public CommonModel<T> add(CommonModel<T> model){
+    public CommonModel<Object> add(CommonModel<Object> model){
         return repository.save(model);
     }
 
     @GetMapping("/MB")
-    public List<CommonModel<T>> all(){
+    public List<CommonModel<Object>> all(){
         return repository.findAll();
     }
 

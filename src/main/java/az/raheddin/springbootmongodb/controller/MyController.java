@@ -1,7 +1,6 @@
 package az.raheddin.springbootmongodb.controller;
 
 import az.raheddin.springbootmongodb.entity.CommonModel;
-import az.raheddin.springbootmongodb.entity.MyModel;
 import az.raheddin.springbootmongodb.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +13,15 @@ import java.util.List;
 public class MyController {
 
     @Autowired
-    private CommonService<MyModel> service;
+    private CommonService service;
 
     @PostMapping("/MB")
-    public ResponseEntity<CommonModel<MyModel>> add(@RequestBody CommonModel<MyModel> model){
+    public ResponseEntity<CommonModel<Object>> add(@RequestBody CommonModel<Object> model){
         return ResponseEntity.ok(service.add(model));
     }
 
     @GetMapping("/MB")
-    public ResponseEntity<List<CommonModel<MyModel>>> allMB(){
+    public ResponseEntity<List<CommonModel<Object>>> allMB(){
         return ResponseEntity.ok(service.all());
     }
 
