@@ -2,6 +2,8 @@ spring:
   data:
     mongodb:
       database: mongo-rest
-      uri: mongodb://localhost:27017
+      uri: mongodb://localhost:27018
+      auto-index-creation: true
+
 server:
   port: 4404

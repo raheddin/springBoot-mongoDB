@@ -26,6 +26,8 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    implementation ("javax.persistence:persistence-api:1.0.2")
+
 }
 
 tasks.withType<Test> {

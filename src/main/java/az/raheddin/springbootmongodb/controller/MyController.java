@@ -1,14 +1,12 @@
 package az.raheddin.springbootmongodb.controller;
 
-import az.raheddin.springbootmongodb.entity.Commission;
-import az.raheddin.springbootmongodb.entity.MyEntity;
-import az.raheddin.springbootmongodb.repository.MongoDBRepository;
-import az.raheddin.springbootmongodb.repository.MyEntityRepository;
+import az.raheddin.springbootmongodb.entity.CommonModel;
+import az.raheddin.springbootmongodb.entity.MyModel;
+import az.raheddin.springbootmongodb.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -16,35 +14,16 @@ import java.util.List;
 public class MyController {
 
     @Autowired
-    private MongoDBRepository dbRepository;
-
-    @Autowired
-    private MyEntityRepository myEntityRepository;
-
-    @PostMapping
-    public ResponseEntity<Commission> add(@RequestBody Commission commission){
-        HashMap<String,Integer> co=new HashMap<>();
-        co.put("ADON",commission.getAmount()/5);
-        co.put("PAKET",(commission.getAmount()/5)*2);
-        co.put("STANDART",(commission.getAmount()/5)*2);
-        commission.setCommission(co);
-        dbRepository.save(commission);
-        return ResponseEntity.ok(commission);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Commission>> all(){
-        return ResponseEntity.ok(dbRepository.findAll());
-    }
+    private CommonService<MyModel> service;
 
     @PostMapping("/MB")
-    public ResponseEntity<MyEntity> addMyEntity(@RequestBody MyEntity myEntity){
-        return ResponseEntity.ok(myEntityRepository.save(myEntity));
+    public ResponseEntity<CommonModel<MyModel>> add(@RequestBody CommonModel<MyModel> model){
+        return ResponseEntity.ok(service.add(model));
     }
 
     @GetMapping("/MB")
-    public ResponseEntity<List<MyEntity>> allMB(){
-        return ResponseEntity.ok(myEntityRepository.findAll());
+    public ResponseEntity<List<CommonModel<MyModel>>> allMB(){
+        return ResponseEntity.ok(service.all());
     }
 
 
