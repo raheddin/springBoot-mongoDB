@@ -1,26 +1,26 @@
 package az.raheddin.springbootmongodb.entity;
 
-import jakarta.persistence.EmbeddedId;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.Persistable;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
 @Document
-public class MyEntity implements Persistable<MyKey> {
+@CompoundIndex(name = "my_entity_index", def = "{ 'name': 1, 'cif': 1 }", unique = true)
+public class MyEntity  {
 
-    @EmbeddedId
-    private MyKey myKey;
+    @Id
+    private String id;
+
+    @Field("name")
+    private String  name;
+
+    @Field("cif")
+    private String cif;
 
     private String text;
 
-    @Override
-    public MyKey getId() {
-        return myKey;
-    }
-
-    @Override
-    public boolean isNew() {
-        return false;
-    }
 }
