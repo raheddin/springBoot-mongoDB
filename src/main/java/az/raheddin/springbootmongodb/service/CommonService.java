@@ -18,12 +18,12 @@ public class CommonService {
 
 
     @PostMapping("/MB")
-    public CommonModel<Object> add(CommonModel<Object> model){
+    public CommonModel<?> add(CommonModel<?> model){
         return repository.save(model);
     }
 
     @GetMapping("/MB")
-    public List<CommonModel<Object>> all(){
+    public List<CommonModel<?>> all(){
         return repository.findAll();
     }
 

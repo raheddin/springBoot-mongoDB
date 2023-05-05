@@ -16,12 +16,12 @@ public class MyController {
     private CommonService service;
 
     @PostMapping("/MB")
-    public ResponseEntity<CommonModel<Object>> add(@RequestBody CommonModel<Object> model){
+    public ResponseEntity<CommonModel<?>> add(@RequestBody CommonModel<Object> model){
         return ResponseEntity.ok(service.add(model));
     }
 
     @GetMapping("/MB")
-    public ResponseEntity<List<CommonModel<Object>>> allMB(){
+    public ResponseEntity<List<CommonModel<?>>> allMB(){
         return ResponseEntity.ok(service.all());
     }
 
