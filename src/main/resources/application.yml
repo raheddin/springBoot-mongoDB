@@ -1,8 +1,12 @@
 spring:
   data:
     mongodb:
-      database: mongo-rest
-      uri: mongodb://localhost:27018
+      authentication-database: admin
+      username: baku
+      password: baku1
+      host: localhost
+      port: 27017
+      database: barca2
       auto-index-creation: true
 
 server:
